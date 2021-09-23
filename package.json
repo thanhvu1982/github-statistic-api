@@ -7,7 +7,7 @@
   "author": "Thanh Vu <misa198>",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "NODE_ENV=production node dist/index.js",
     "build": "rm -rf dist && tsc",
     "dev": "nodemon",
     "test": "jest",

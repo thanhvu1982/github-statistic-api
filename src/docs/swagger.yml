@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   title: "Github Statistics API"
 servers:
-  - url: http://localhost:3000
+  - url: https://github.com/misa198/github-statistic-api
 paths:
   /contributions:
     get:
