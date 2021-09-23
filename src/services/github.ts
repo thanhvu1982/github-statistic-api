@@ -1,5 +1,5 @@
 import { GITHUB_URL } from '@/constants/config';
-import { Year } from '@/models/Year';
+import { Day, Year } from '@/models/Github';
 import axios from 'axios';
 import cheerio from 'cheerio';
 
@@ -16,4 +16,19 @@ export const getYears = async (username: string): Promise<Year[]> => {
       };
     });
   return years;
+};
+
+export const getYearData = async (year: Year): Promise<Day[]> => {
+  const res = await axios.get(`${GITHUB_URL}${year.url}`);
+  const $ = cheerio.load(res.data);
+  const days = $('.ContributionCalendar-day');
+  const data: Day[] = [];
+  days.each((_i, day) => {
+    const { attribs } = day;
+    data.push({
+      date: attribs['data-date'],
+      value: parseInt(attribs['data-count'] ?? '0', 0),
+    });
+  });
+  return data;
 };
