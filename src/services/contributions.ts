@@ -1,5 +1,5 @@
 import { GITHUB_URL } from '@/constants/config';
-import { DataAllYearFormat, Day, Year } from '@/models/Github';
+import { DataAllYearFormat, Day, Year } from '@/models/Contribution';
 import axios from 'axios';
 import cheerio from 'cheerio';
 
