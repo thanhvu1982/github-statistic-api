@@ -1,5 +1,5 @@
 import { GetContributionsDto } from '@/dtos/getContributionsDto';
-import * as githubService from '@/services/github';
+import * as contributionsService from '@/services/contributions';
 import { Request, Response } from 'express';
 
 export const getContributions = async (req: Request, res: Response) => {
@@ -9,18 +9,21 @@ export const getContributions = async (req: Request, res: Response) => {
   try {
     if (allYear) {
       return res.send({
-        message: await githubService.getDataForAllYears(username, format),
+        message: await contributionsService.getDataForAllYears(
+          username,
+          format,
+        ),
       });
     }
 
     if (year) {
       return res.send({
-        message: await githubService.getDataForYear(username, year),
+        message: await contributionsService.getDataForYear(username, year),
       });
     }
 
     return res.send({
-      data: await githubService.getDataOverview(username),
+      data: await contributionsService.getDataOverview(username),
     });
   } catch (error) {
     return res.status(400).send({
