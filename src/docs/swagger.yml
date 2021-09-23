@@ -1,6 +1,6 @@
 openapi: '3.0.2'
 info:
-  description: "API to get contribution statistics and pinned projectsÏ"
+  description: "API to get contribution statistics and pinned projects"
   version: "1.0.0"
   title: "Github Statistics API"
 servers:

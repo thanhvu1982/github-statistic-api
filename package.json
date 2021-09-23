@@ -1,7 +1,7 @@
 {
   "name": "github-stats-api",
   "version": "1.0.0",
-  "description": "Github statistics API",
+  "description": "API to get contribution statistics and pinned projects",
   "main": "dist/index.js",
   "repository": "https://github.com/misa198/github-stats-api",
   "author": "Thanh Vu <misa198>",
