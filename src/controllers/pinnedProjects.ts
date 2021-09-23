@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { GetContributionsDto } from '../dtos/getContributionsDto';
+import { GetContributionsDto } from '../dtos/GetContributionsDto';
 import * as pinnedProjectsService from '../services/pinnedProjects';
 
 export const getPinnedProjects = async (req: Request, res: Response) => {

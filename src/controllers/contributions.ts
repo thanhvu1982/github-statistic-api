@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { GetContributionsDto } from '../dtos/getContributionsDto';
+import { GetContributionsDto } from '../dtos/GetContributionsDto';
 import { GetYearsDto } from '../dtos/GetYearsDto';
 import * as contributionsService from '../services/contributions';
 

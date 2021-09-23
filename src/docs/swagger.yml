@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   title: "Github Statistics API"
 servers:
-  - url: https://github.com/misa198/github-statistic-api
+  - url: https://github-statistic-api-misa198.herokuapp.com
 paths:
   /contributions:
     get:
