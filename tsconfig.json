@@ -14,12 +14,6 @@
     "strict": true,
     "sourceMap": false,
     "outDir": "dist",
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": [
-        "./*"
-      ],
-    },
   },
   "include": [
     "src/**/*"

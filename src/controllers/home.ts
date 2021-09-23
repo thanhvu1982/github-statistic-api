@@ -1,4 +1,4 @@
-import { DOCS_URL, GITHUB_REPOSITORY_URL } from '@/constants/config';
+import { DOCS_URL, GITHUB_REPOSITORY_URL } from '../constants/config';
 import { Request, Response } from 'express';
 
 export const index = (req: Request, res: Response) => {
