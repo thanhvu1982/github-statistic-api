@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV === 'production') {
+  require('module-alias/register');
+}
 import contributionsRoute from '@/routes/contributions';
 import pinnedProjectsRoute from '@/routes/pinnedProjects';
 import cors from 'cors';
