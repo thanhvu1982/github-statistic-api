@@ -3,11 +3,11 @@ import * as githubService from '@/services/github';
 import { Request, Response } from 'express';
 
 export const getContributions = async (req: Request, res: Response) => {
-  const { username, year, format, fullYear } =
+  const { username, year, format, allYear } =
     req.query as unknown as GetContributionsDto;
 
   try {
-    if (fullYear) {
+    if (allYear) {
       return res.send({
         message: await githubService.getDataForAllYears(username, format),
       });
