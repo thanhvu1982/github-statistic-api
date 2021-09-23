@@ -1,5 +1,5 @@
 {
-  "name": "github-stats",
+  "name": "github-stats-api",
   "version": "1.0.0",
   "description": "Github statistics API",
   "main": "dist/index.js",
