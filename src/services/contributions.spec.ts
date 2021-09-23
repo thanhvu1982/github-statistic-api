@@ -1,10 +1,10 @@
-import * as ContributionsService from './contributions';
+import * as contributionsService from './contributions';
 
 const username = 'misa198';
 
 describe('Gets years', () => {
   it('Returns a array of years', async () => {
-    const years = await ContributionsService.getYears(username);
+    const years = await contributionsService.getYears(username);
     const url = years[0].url;
     const value = years[0].value;
     expect(years.length).toBeGreaterThan(0);
@@ -19,7 +19,7 @@ describe('Gets years', () => {
 
 describe('Gets data for year by url', () => {
   it('Returns data for one year', async () => {
-    const data = await ContributionsService.getDataForYearByUrl({
+    const data = await contributionsService.getDataForYearByUrl({
       value: '2020',
       url: '/misa198?tab=overview&from=2020-12-01&to=2020-12-31',
     });
@@ -34,7 +34,7 @@ describe('Gets data for year by url', () => {
 
 describe('Gets data for year', () => {
   it('Returns data for one year', async () => {
-    const data = await ContributionsService.getDataForYear(username, 2020);
+    const data = await contributionsService.getDataForYear(username, 2020);
     const day = data[0];
     expect(data.length).toBeGreaterThan(0);
     expect(day.date).not.toEqual('');
@@ -46,7 +46,7 @@ describe('Gets data for year', () => {
 
 describe('Gets data for all years', () => {
   it('Returns data for all years (array)', async () => {
-    const dataArray = await ContributionsService.getDataForAllYears(
+    const dataArray = await contributionsService.getDataForAllYears(
       username,
       'array',
     );
@@ -59,7 +59,7 @@ describe('Gets data for all years', () => {
   });
 
   it('Returns data for all years (object)', async () => {
-    const dataArray = await ContributionsService.getDataForAllYears(
+    const dataArray = await contributionsService.getDataForAllYears(
       username,
       'object',
     );
