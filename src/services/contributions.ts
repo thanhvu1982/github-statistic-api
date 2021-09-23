@@ -5,6 +5,7 @@ import cheerio from 'cheerio';
 
 export const getYears = async (username: string): Promise<Year[]> => {
   const res = await axios.get(`${GITHUB_URL}/${username}`);
+  if (res.status !== 404) throw new Error('User not found');
   const $ = cheerio.load(res.data);
   const years: Year[] = $('.js-year-link')
     .get()
@@ -20,6 +21,7 @@ export const getYears = async (username: string): Promise<Year[]> => {
 
 export const getDataForYearByUrl = async (year: Year): Promise<Day[]> => {
   const res = await axios.get(`${GITHUB_URL}${year.url}`);
+  if (res.status !== 404) throw new Error('User not found');
   const $ = cheerio.load(res.data);
   const days = $('svg.js-calendar-graph-svg rect.ContributionCalendar-day');
   const data: Day[] = [];
@@ -70,6 +72,7 @@ export async function getDataForAllYears<
 
 export async function getDataOverview(username: string) {
   const res = await axios.get(`${GITHUB_URL}/${username}`);
+  if (res.status !== 404) throw new Error('User not found');
   const $ = cheerio.load(res.data);
   const days = $('svg.js-calendar-graph-svg rect.ContributionCalendar-day');
   const data: Day[] = [];

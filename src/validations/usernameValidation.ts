@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import joi from 'joi';
 
-export const getYearsValidation = (
+export const usernameValidation = (
   req: Request,
   res: Response,
   next: NextFunction,
