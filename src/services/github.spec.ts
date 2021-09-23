@@ -17,9 +17,9 @@ describe('Gets years', () => {
   });
 });
 
-describe('Gets data of year', () => {
-  it('Returns data of one year', async () => {
-    const data = await githubService.getYearData({
+describe('Gets data for year', () => {
+  it('Returns data for one year', async () => {
+    const data = await githubService.getYearForData({
       value: '2020',
       url: '/misa198?tab=overview&from=2020-12-01&to=2020-12-31',
     });
@@ -29,5 +29,32 @@ describe('Gets data of year', () => {
     expect(day.date).not.toBeNull();
     expect(day.date).not.toBeUndefined();
     expect(day.value).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe('Gets data for all years', () => {
+  it('Returns data for all years (array)', async () => {
+    const dataArray = await githubService.getDataForAllYears(username, 'array');
+    const day = dataArray[0];
+    expect(dataArray.length).toBeGreaterThan(0);
+    expect(day.date).not.toEqual('');
+    expect(day.date).not.toBeNull();
+    expect(day.date).not.toBeUndefined();
+    expect(day.value).toBeGreaterThanOrEqual(0);
+  });
+
+  it('Returns data for all years (object)', async () => {
+    const dataArray = await githubService.getDataForAllYears(
+      username,
+      'object',
+    );
+    const years = Object.keys(dataArray);
+    const yearData = dataArray[years[0]];
+    expect(years.length).toBeGreaterThan(0);
+    expect(yearData.length).toBeGreaterThan(0);
+    expect(yearData[0].date).not.toEqual('');
+    expect(yearData[0].date).not.toBeNull();
+    expect(yearData[0].date).not.toBeUndefined();
+    expect(yearData[0].value).toBeGreaterThanOrEqual(0);
   });
 });
