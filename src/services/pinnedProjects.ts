@@ -7,6 +7,7 @@ export const getPinnedProjects = async (
   username: string,
 ): Promise<PinnedProject[]> => {
   const res = await axios.get(`${GITHUB_URL}/${username}`);
+  if (res.status === 404) throw new Error('User not found');
   const $ = cheerio.load(res.data);
   const pinnedProjectsList = $('.pinned-item-list-item-content');
 

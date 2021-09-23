@@ -1,0 +1,153 @@
+openapi: '3.0.2'
+info:
+  description: "API to get contribution statistics and pinned projectsÏ"
+  version: "1.0.0"
+  title: "Github Statistics API"
+servers:
+  - url: http://localhost:3000
+paths:
+  /contributions:
+    get:
+      parameters:
+        - name: username
+          in: query
+          description: "Github username"
+          required: true
+          schema:
+            type: string
+        - name: year
+          in: query
+          description: "Year to get statistics"
+          required: false
+          schema:
+            type: number
+            format: int
+        - name: allYear
+          in: query
+          description: "Option to get statistics of all years or not"
+          required: false
+          schema:
+            type: boolean
+        - name: format
+          in: query
+          description: "Return data type. Only available when there is a field 'fullYear'"
+          required: false
+          schema:
+            type: string
+            enum:
+              - "array"
+              - "object"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/GetFullYearArrayContributionsResponse"
+                  - $ref: "#/components/schemas/GetFullYearObjectContributionsResponse"
+        '400':
+          description: "Bad request"
+
+  /contributions/years:
+    get:
+      parameters:
+        - name: username
+          in: query
+          description: "Github username"
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetYearsResponse"
+        '400':
+          description: "Bad request"
+
+  /pinned-projects:
+    get:
+      parameters:
+        - name: username
+          in: query
+          description: "Github username"
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetPinnedProjectsResponse"
+        '400':
+          description: "Bad request"
+components:
+  schemas:
+    Year:
+      type: "object"
+      properties:
+        url:
+          type: "string"
+        year:
+          type: "number"
+    Contribution:
+      type: "object"
+      properties:
+        date:
+          type: "string"
+          format: "string"
+        value:
+          type: "integer"
+          format: "int"
+    PinnedProject:
+      type: "object"
+      properties:
+        url:
+          type: "string"
+        name:
+          type: "string"
+        description:
+          type: "string"
+        stars:
+          type: "number"
+        forks:
+          type: "number"
+        language:
+          type: "string"
+        color:
+          type: "string"
+    GetFullYearArrayContributionsResponse:
+      type: "object"
+      properties:
+        data:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Contribution"
+    GetFullYearObjectContributionsResponse:
+      type: "object"
+      properties:
+        data:
+          type: "object"
+          properties:
+            year:
+              $ref: "#/components/schemas/Contribution"
+    GetYearsResponse:
+      type: "object"
+      properties:
+        data:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Year"
+    GetPinnedProjectsResponse:
+      type: "object"
+      properties:
+        data:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/PinnedProject"
+

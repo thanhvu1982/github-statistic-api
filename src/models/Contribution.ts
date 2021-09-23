@@ -1,6 +1,6 @@
 export interface Year {
   url: string;
-  value: string;
+  year: number;
 }
 
 export interface Day {

@@ -25,7 +25,7 @@ export const getContributions = async (req: Request, res: Response) => {
   try {
     if (allYear) {
       return res.send({
-        message: await contributionsService.getDataForAllYears(
+        data: await contributionsService.getDataForAllYears(
           username,
           format,
         ),
@@ -34,7 +34,7 @@ export const getContributions = async (req: Request, res: Response) => {
 
     if (year) {
       return res.send({
-        message: await contributionsService.getDataForYear(username, year),
+        data: await contributionsService.getDataForYear(username, year),
       });
     }
 
@@ -43,7 +43,7 @@ export const getContributions = async (req: Request, res: Response) => {
     });
   } catch (error) {
     return res.status(400).send({
-      message: 'Bad request',
+      error: 'Bad request',
     });
   }
 };

@@ -12,6 +12,6 @@ export const getPinnedProjects = async (req: Request, res: Response) => {
       data: pinnedProjects,
     });
   } catch (error) {
-    res.status(400).send({ message: 'Bad request' });
+    res.status(400).send({ error: 'Bad request' });
   }
 };

@@ -5,15 +5,15 @@ import cheerio from 'cheerio';
 
 export const getYears = async (username: string): Promise<Year[]> => {
   const res = await axios.get(`${GITHUB_URL}/${username}`);
-  if (res.status !== 404) throw new Error('User not found');
+  if (res.status === 404) throw new Error('User not found');
   const $ = cheerio.load(res.data);
   const years: Year[] = $('.js-year-link')
     .get()
     .map((a) => {
       const linkElement = $(a);
       return {
-        value: linkElement.text().trim(),
-        url: linkElement.attr('href') as string,
+        year: parseInt(linkElement.text().trim(), 10),
+        url: `${GITHUB_URL}${linkElement.attr('href') as string}`,
       };
     });
   return years;
@@ -21,7 +21,7 @@ export const getYears = async (username: string): Promise<Year[]> => {
 
 export const getDataForYearByUrl = async (year: Year): Promise<Day[]> => {
   const res = await axios.get(`${GITHUB_URL}${year.url}`);
-  if (res.status !== 404) throw new Error('User not found');
+  if (res.status === 404) throw new Error('User not found');
   const $ = cheerio.load(res.data);
   const days = $('svg.js-calendar-graph-svg rect.ContributionCalendar-day');
   const data: Day[] = [];
@@ -40,7 +40,7 @@ export const getDataForYear = async (
   year: number,
 ): Promise<Day[]> => {
   const years = await getYears(username);
-  const yearToGet = years.find((y) => y.value === year.toString());
+  const yearToGet = years.find((y) => y.year === year);
   if (!yearToGet) {
     throw new Error(`Year ${year} not found`);
   }
@@ -64,7 +64,7 @@ export async function getDataForAllYears<
   } else {
     const data: { [key: string]: Day[] } = {};
     resForAllYears.forEach((yearData, index) => {
-      data[years[index].value] = yearData;
+      data[years[index].year] = yearData;
     });
     return data as unknown as Return;
   }
@@ -72,7 +72,7 @@ export async function getDataForAllYears<
 
 export async function getDataOverview(username: string) {
   const res = await axios.get(`${GITHUB_URL}/${username}`);
-  if (res.status !== 404) throw new Error('User not found');
+  if (res.status === 404) throw new Error('User not found');
   const $ = cheerio.load(res.data);
   const days = $('svg.js-calendar-graph-svg rect.ContributionCalendar-day');
   const data: Day[] = [];
