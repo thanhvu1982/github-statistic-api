@@ -1,9 +1,9 @@
 {
-  "name": "github-stats-api",
+  "name": "github-statistic-api",
   "version": "1.0.0",
   "description": "API to get contribution statistics and pinned projects",
   "main": "dist/index.js",
-  "repository": "https://github.com/misa198/github-stats-api",
+  "repository": "https://github.com/misa198/github-statistic-api",
   "author": "Thanh Vu <misa198>",
   "license": "MIT",
   "scripts": {
