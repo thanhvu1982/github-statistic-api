@@ -14,7 +14,7 @@
     "strict": true,
     "sourceMap": false,
     "outDir": "dist",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "@/*": [
         "./*"
