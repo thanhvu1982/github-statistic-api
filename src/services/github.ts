@@ -67,3 +67,18 @@ export async function getDataForAllYears<
     return data as unknown as Return;
   }
 }
+
+export async function getDataOverview(username: string) {
+  const res = await axios.get(`${GITHUB_URL}/${username}`);
+  const $ = cheerio.load(res.data);
+  const days = $('.ContributionCalendar-day');
+  const data: Day[] = [];
+  days.each((_i, day) => {
+    const { attribs } = day;
+    data.push({
+      date: attribs['data-date'],
+      value: parseInt(attribs['data-count'] ?? '0', 0),
+    });
+  });
+  return data;
+}
