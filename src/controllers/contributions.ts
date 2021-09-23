@@ -1,6 +1,22 @@
 import { GetContributionsDto } from '@/dtos/getContributionsDto';
+import { GetYearsDto } from '@/dtos/GetYearsDto';
 import * as contributionsService from '@/services/contributions';
 import { Request, Response } from 'express';
+
+export const getYears = async (req: Request, res: Response) => {
+  try {
+    const { username } = req.query as unknown as GetYearsDto;
+
+    const years = await contributionsService.getYears(username);
+    return res.send({
+      data: years,
+    });
+  } catch (error) {
+    return res.status(400).send({
+      error: 'Bad request',
+    });
+  }
+};
 
 export const getContributions = async (req: Request, res: Response) => {
   const { username, year, format, allYear } =
