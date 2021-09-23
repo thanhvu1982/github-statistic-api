@@ -21,7 +21,7 @@ describe('Gets data for year by url', () => {
   it('Returns data for one year', async () => {
     const data = await contributionsService.getDataForYearByUrl({
       year: 2020,
-      url: '/misa198?tab=overview&from=2020-12-01&to=2020-12-31',
+      url: 'https://github.com/misa198?tab=overview&from=2020-12-01&to=2020-12-31',
     });
     const day = data[0];
     expect(data.length).toBeGreaterThan(0);

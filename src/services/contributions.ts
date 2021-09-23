@@ -20,7 +20,7 @@ export const getYears = async (username: string): Promise<Year[]> => {
 };
 
 export const getDataForYearByUrl = async (year: Year): Promise<Day[]> => {
-  const res = await axios.get(`${GITHUB_URL}${year.url}`);
+  const res = await axios.get(`${year.url}`);
   if (res.status === 404) throw new Error('User not found');
   const $ = cheerio.load(res.data);
   const days = $('svg.js-calendar-graph-svg rect.ContributionCalendar-day');
@@ -49,7 +49,7 @@ export const getDataForYear = async (
 
 export async function getDataForAllYears<
   Format extends DataAllYearFormat,
-  Return = Format extends 'array' ? Day[] : { [key: string]: Day[] },
+  Return = Format extends 'object' ? { [key: string]: Day[] } : Day[],
 >(username: string, format: Format): Promise<Return> {
   const years = await getYears(username);
   const resForAllYears: Day[][] = await Promise.all(
