@@ -18,7 +18,7 @@ export const getYears = async (username: string): Promise<Year[]> => {
   return years;
 };
 
-export const getYearForData = async (year: Year): Promise<Day[]> => {
+export const getDataForYearByUrl = async (year: Year): Promise<Day[]> => {
   const res = await axios.get(`${GITHUB_URL}${year.url}`);
   const $ = cheerio.load(res.data);
   const days = $('.ContributionCalendar-day');
@@ -33,13 +33,25 @@ export const getYearForData = async (year: Year): Promise<Day[]> => {
   return data;
 };
 
+export const getDataForYear = async (
+  username: string,
+  year: number,
+): Promise<Day[]> => {
+  const years = await getYears(username);
+  const yearToGet = years.find((y) => y.value === year.toString());
+  if (!yearToGet) {
+    throw new Error(`Year ${year} not found`);
+  }
+  return await getDataForYearByUrl(yearToGet);
+};
+
 export async function getDataForAllYears<
   Format extends DataAllYearFormat,
   Return = Format extends 'array' ? Day[] : { [key: string]: Day[] },
 >(username: string, format: Format): Promise<Return> {
   const years = await getYears(username);
   const resForAllYears: Day[][] = await Promise.all(
-    years.map((year) => getYearForData(year)),
+    years.map((year) => getDataForYearByUrl(year)),
   );
   if (format === 'array') {
     let data: Day[] = [];

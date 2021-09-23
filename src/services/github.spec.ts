@@ -17,12 +17,24 @@ describe('Gets years', () => {
   });
 });
 
-describe('Gets data for year', () => {
+describe('Gets data for year by url', () => {
   it('Returns data for one year', async () => {
-    const data = await githubService.getYearForData({
+    const data = await githubService.getDataForYearByUrl({
       value: '2020',
       url: '/misa198?tab=overview&from=2020-12-01&to=2020-12-31',
     });
+    const day = data[0];
+    expect(data.length).toBeGreaterThan(0);
+    expect(day.date).not.toEqual('');
+    expect(day.date).not.toBeNull();
+    expect(day.date).not.toBeUndefined();
+    expect(day.value).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe('Gets data for year', () => {
+  it('Returns data for one year', async () => {
+    const data = await githubService.getDataForYear(username, 2020);
     const day = data[0];
     expect(data.length).toBeGreaterThan(0);
     expect(day.date).not.toEqual('');
