@@ -1,7 +1,7 @@
-import { GITHUB_URL } from '@/constants/config';
-import { PinnedProject } from '@/models/PinnedProject';
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { GITHUB_URL } from '../constants/config';
+import { PinnedProject } from '../models/PinnedProject';
 
 export const getPinnedProjects = async (
   username: string,

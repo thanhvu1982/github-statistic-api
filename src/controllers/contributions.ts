@@ -1,7 +1,7 @@
-import { GetContributionsDto } from '@/dtos/getContributionsDto';
-import { GetYearsDto } from '@/dtos/GetYearsDto';
-import * as contributionsService from '@/services/contributions';
 import { Request, Response } from 'express';
+import { GetContributionsDto } from '../dtos/getContributionsDto';
+import { GetYearsDto } from '../dtos/GetYearsDto';
+import * as contributionsService from '../services/contributions';
 
 export const getYears = async (req: Request, res: Response) => {
   try {
@@ -25,10 +25,7 @@ export const getContributions = async (req: Request, res: Response) => {
   try {
     if (allYear) {
       return res.send({
-        data: await contributionsService.getDataForAllYears(
-          username,
-          format,
-        ),
+        data: await contributionsService.getDataForAllYears(username, format),
       });
     }
 

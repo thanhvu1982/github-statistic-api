@@ -1,6 +1,6 @@
-import { GetContributionsDto } from '@/dtos/getContributionsDto';
-import * as pinnedProjectsService from '@/services/pinnedProjects';
 import { Request, Response } from 'express';
+import { GetContributionsDto } from '../dtos/getContributionsDto';
+import * as pinnedProjectsService from '../services/pinnedProjects';
 
 export const getPinnedProjects = async (req: Request, res: Response) => {
   try {

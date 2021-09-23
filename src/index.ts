@@ -1,15 +1,11 @@
-if (process.env.NODE_ENV === 'production') {
-  require('module-alias/register');
-}
-import contributionsRoute from '@/routes/contributions';
-import pinnedProjectsRoute from '@/routes/pinnedProjects';
 import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import swaggerUI from 'swagger-ui-express';
 import yaml from 'yamljs';
 import { PORT } from './constants/config';
-
+import contributionsRoute from './routes/contributions';
+import pinnedProjectsRoute from './routes/pinnedProjects';
 const app = express();
 
 app.use(cors());

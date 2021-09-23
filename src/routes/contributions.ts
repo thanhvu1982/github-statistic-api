@@ -1,7 +1,7 @@
-import * as controller from '@/controllers/contributions';
-import { getContributionsValidation } from '@/validations/getContributionsValidation';
-import { usernameValidation } from '@/validations/usernameValidation';
 import { Router } from 'express';
+import * as controller from '../controllers/contributions';
+import { getContributionsValidation } from '../validations/getContributionsValidation';
+import { usernameValidation } from '../validations/usernameValidation';
 
 const router = Router();
 

@@ -1,7 +1,7 @@
-import { GITHUB_URL } from '@/constants/config';
-import { DataAllYearFormat, Day, Year } from '@/models/Contribution';
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { GITHUB_URL } from '../constants/config';
+import { DataAllYearFormat, Day, Year } from '../models/Contribution';
 
 export const getYears = async (username: string): Promise<Year[]> => {
   const res = await axios.get(`${GITHUB_URL}/${username}`);

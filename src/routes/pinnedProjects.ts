@@ -1,6 +1,6 @@
-import * as controller from '@/controllers/pinnedProjects';
-import { usernameValidation } from '@/validations/usernameValidation';
 import { Router } from 'express';
+import * as controller from '../controllers/pinnedProjects';
+import { usernameValidation } from '../validations/usernameValidation';
 
 const router = Router();
 
