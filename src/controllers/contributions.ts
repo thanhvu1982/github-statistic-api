@@ -19,11 +19,11 @@ export const getYears = async (req: Request, res: Response) => {
 };
 
 export const getContributions = async (req: Request, res: Response) => {
-  const { username, year, format, allYear } =
+  const { username, year, format, allYears } =
     req.query as unknown as GetContributionsDto;
 
   try {
-    if (allYear) {
+    if (allYears) {
       return res.send({
         data: await contributionsService.getDataForAllYears(username, format),
       });

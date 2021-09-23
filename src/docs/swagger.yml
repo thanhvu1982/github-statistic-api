@@ -22,7 +22,7 @@ paths:
           schema:
             type: number
             format: int
-        - name: allYear
+        - name: allYears
           in: query
           description: "Option to get statistics of all years or not"
           required: false

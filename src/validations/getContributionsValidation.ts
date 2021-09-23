@@ -10,7 +10,7 @@ export const getContributionsValidation = (
     username: joi.string().required(),
     year: joi.number(),
     format: joi.string().allow('array', 'object').default('array'),
-    allYear: joi.boolean(),
+    allYears: joi.boolean(),
   });
 
   const { error, value } = schema.validate(req.query);
