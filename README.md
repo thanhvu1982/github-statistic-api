@@ -6,7 +6,7 @@ API to get contribution statistics and pinned projects.
 
 ## Usage
 
-See the [docs](https://github-statistic-api-misa198.herokuapp.com/docs)
+See the [docs](https://misa198.github.io/github-statistic-api)
 
 ## Installation
 
