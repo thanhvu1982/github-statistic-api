@@ -18,25 +18,25 @@ export const getPinnedProjects = async (
     const href = pinnedProject.find('a')[0].attribs.href.trim();
     const owner = href.split('/')[1];
     const name = href.split('/')[2];
-    const description = $(pinnedProject.find('p')[0]).text().trim();
-    const stars = $(pinnedProject.find('a')[1]).text().trim();
-    const forks = $(pinnedProject.find('a')[2]).text().trim();
-    const language = $(pinnedProject.find('span')[3]).text().trim();
+    const description = $(pinnedProject.find('p.pinned-item-desc')[0]).text().trim();
+    const stars = $(pinnedProject.find('a.pinned-item-meta')[0]).text().trim();
+    const forks = $(pinnedProject.find('a.pinned-item-meta')[1]).text().trim();
+    const language = pinnedProject
+      .find('span[itemprop="programmingLanguage"]')
+      .text()
+      .trim();
     const color = pinnedProject
       .find('span.repo-language-color')[0]
       .attribs.style.trim()
       .split(': ')[1];
-
-    const starsNum = parseInt(stars, 10);
-    const forksNum = parseInt(forks, 10);
 
     pinnedProjects.push({
       url: `${GITHUB_URL}${href}`,
       owner,
       name,
       description,
-      stars: Number.isNaN(starsNum) ? 0 : starsNum,
-      forks: Number.isNaN(forksNum) ? 0 : forksNum,
+      stars: stars || '0',
+      forks: forks || '0',
       language,
       color,
     });

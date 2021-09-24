@@ -3,8 +3,8 @@ export interface PinnedProject {
   owner: string;
   name: string;
   description: string;
-  stars: number;
-  forks: number;
+  stars: string;
+  forks: string;
   language: string;
   color: string;
 }
