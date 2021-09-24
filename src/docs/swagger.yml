@@ -3,6 +3,9 @@ info:
   description: "API to get contribution statistics and pinned projects"
   version: "1.0.0"
   title: "Github Statistics API"
+  contact:
+    name: Thanh Vu
+    url: https://github.com/misa198/github-statistic-api
 servers:
   - url: https://github-statistic-api-misa198.herokuapp.com
 paths:
