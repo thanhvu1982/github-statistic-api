@@ -112,6 +112,8 @@ components:
       properties:
         url:
           type: "string"
+        owner:
+          type: "string"
         name:
           type: "string"
         description:
