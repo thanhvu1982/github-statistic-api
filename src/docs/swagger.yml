@@ -33,7 +33,7 @@ paths:
             type: boolean
         - name: format
           in: query
-          description: "Return data type. Only available when there is a field 'fullYear'"
+          description: "Return data type. Only available when there is a field 'AllYears'"
           required: false
           schema:
             type: string
@@ -47,8 +47,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: "#/components/schemas/GetFullYearArrayContributionsResponse"
-                  - $ref: "#/components/schemas/GetFullYearObjectContributionsResponse"
+                  - $ref: "#/components/schemas/GetAllYearsArrayContributionsResponse"
+                  - $ref: "#/components/schemas/GetAllYearsObjectContributionsResponse"
         '400':
           description: "Bad request"
 
@@ -117,21 +117,21 @@ components:
         description:
           type: "string"
         stars:
-          type: "number"
+          type: "string"
         forks:
-          type: "number"
+          type: "string"
         language:
           type: "string"
         color:
           type: "string"
-    GetFullYearArrayContributionsResponse:
+    GetAllYearsArrayContributionsResponse:
       type: "object"
       properties:
         data:
           type: "array"
           items:
             $ref: "#/components/schemas/Contribution"
-    GetFullYearObjectContributionsResponse:
+    GetAllYearsObjectContributionsResponse:
       type: "object"
       properties:
         data:
