@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="”en”">
+  <head>
+    <meta charset=”UTF-8"> <meta name=”viewport” content=”width=device-width,
+    initial-scale=1">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.3/swagger-ui.min.css"
+      integrity="sha512-dFuohqVso7kItN2ft/glXFWpU3ZKdGsmV6HL3l7Vxu39syv/mfnp+HKoGwMUtmrlOapINWzSlIHiiC3q0CZ/GA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Github Statistics API</title>
+    <body>
+      <div id="root"></div>
+
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.3/swagger-ui-bundle.min.js"
+        integrity="sha512-ijA62nAx0v8vVbWF4Zx+robHQOdvN+PbArQBvCAciDS3k4sHtefbL8flGVurIkKLu/HucFqskP+dXDe6+I1GTg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+      <script>
+        window.onload = function () {
+          const ui = SwaggerUIBundle({
+            url: './swagger.yml',
+            dom_id: '#root',
+          });
+        };
+      </script>
+    </body>
+  </head>
+</html>
