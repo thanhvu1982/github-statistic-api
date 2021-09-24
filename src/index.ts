@@ -11,14 +11,14 @@ import pinnedProjectsRoute from './routes/pinnedProjects';
 
 const app = express();
 app.use(cors());
+app.use('/contributions', contributionsRoute);
+app.use('/pinned-projects', pinnedProjectsRoute);
+app.use('/', homeRoute);
 app.use(
   '/docs',
   swaggerUI.serve,
   swaggerUI.setup(yaml.load(path.join(__dirname, 'docs', 'swagger.yml'))),
 );
-app.use('/contributions', contributionsRoute);
-app.use('/pinned-projects', pinnedProjectsRoute);
-app.use('/', homeRoute);
 
 app.listen(PORT, () => {
   console.log(`> Server listening on port ${PORT}`);

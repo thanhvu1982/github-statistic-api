@@ -16,7 +16,8 @@ export const getPinnedProjects = async (
   pinnedProjectsList.each((i) => {
     const pinnedProject = pinnedProjectsList.eq(i);
     const href = pinnedProject.find('a')[0].attribs.href.trim();
-    const name = $(pinnedProject.find('a')[0].children[1]).text().trim();
+    const owner = $(pinnedProject.find('a')[0].children[1]).text().trim();
+    const name = $(pinnedProject.find('a')[0].children[3]).text().trim();
     const description = $(pinnedProject.find('p')[0]).text().trim();
     const stars = $(pinnedProject.find('a')[1]).text().trim();
     const forks = $(pinnedProject.find('a')[2]).text().trim();
@@ -31,6 +32,7 @@ export const getPinnedProjects = async (
 
     pinnedProjects.push({
       url: `${GITHUB_URL}${href}`,
+      owner,
       name,
       description,
       stars: Number.isNaN(starsNum) ? 0 : starsNum,
